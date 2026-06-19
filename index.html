@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#f4f1ea">
+<title>Kolot · Booking</title>
+<style>
+  /* ——— Spokojna, ciepła paleta — łagodna dla oczu ——— */
+  :root{
+    --bg:#f4f1ea; --card:#fffdf8; --card2:#f1ede3; --line:#e7e1d3;
+    --txt:#4a4842; --mut:#9c968b; --accent:#5e8d7c; --accent-d:#4f7b6b;
+    --accent-soft:#e6efe9;
+    --s-none:#c2bdb2; --s-noans:#d09a5c; --s-call:#c8b25f; --s-int:#7faa84;
+    --s-ref:#cf9595; --s-concert:#85a3c4; --pin:#cf9a5a;
+  }
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  html,body{margin:0;padding:0}
+  body{
+    background:var(--bg); color:var(--txt);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+    font-size:16px; line-height:1.45; padding-bottom:44px;
+    -webkit-text-size-adjust:100%; font-weight:400;
+  }
+  /* ——— Nagłówek — cichy, papierowy ——— */
+  header{
+    position:sticky; top:0; z-index:20; background:var(--bg);
+    padding:calc(env(safe-area-inset-top) + 14px) 16px 8px;
+    border-bottom:1px solid var(--line);
+  }
+  .hi{font-size:20px;font-weight:600;letter-spacing:.1px;color:var(--txt)}
+  .hi small{color:var(--accent);font-weight:600}
+  .sub{color:var(--mut);font-size:13px;margin-top:3px}
+  /* ——— Filtry ——— */
+  .chips{display:flex;gap:8px;overflow-x:auto;padding:12px 0 4px;-webkit-overflow-scrolling:touch}
+  .chips::-webkit-scrollbar{display:none}
+  .chip{
+    flex:0 0 auto; border:1px solid var(--line); background:var(--card);
+    color:var(--mut); padding:8px 14px; border-radius:999px; font-size:13.5px;
+    font-weight:500; white-space:nowrap; cursor:pointer; user-select:none;
+  }
+  .chip.on{background:var(--accent-soft);border-color:var(--accent);color:var(--accent-d);font-weight:600}
+  .chip .n{opacity:.6;font-weight:400;margin-left:5px}
+  /* ——— Lista ——— */
+  main{padding:6px 14px}
+  .group{margin:18px 0 8px;color:var(--mut);font-size:11.5px;font-weight:600;
+    text-transform:uppercase;letter-spacing:1px;padding-left:3px}
+  .card{
+    background:var(--card); border:1px solid var(--line); border-radius:18px;
+    margin-bottom:11px; overflow:hidden; box-shadow:0 1px 2px rgba(74,72,66,.04);
+    transition:border-color .15s;
+  }
+  .card.pinned{border-color:var(--pin)}
+  .head{display:flex;flex-direction:column;gap:11px;padding:14px 15px}
+  .toprow{display:flex;align-items:flex-start;gap:11px}
+  .dot{width:10px;height:10px;border-radius:50%;flex:0 0 auto;margin-top:6px}
+  .meta{flex:1;min-width:0}
+  .name{font-weight:600;font-size:16.5px;color:var(--txt);overflow-wrap:anywhere}
+  .sent{color:var(--mut);font-size:12px;margin-top:3px}
+  .pinrow{color:var(--pin);font-size:12.5px;font-weight:600;margin-top:3px}
+  .tel{
+    display:flex;align-items:center;justify-content:center;gap:9px;text-decoration:none;
+    background:var(--accent);color:#fff;font-weight:600;font-size:17px;
+    padding:12px 15px;border-radius:14px;width:100%;
+    box-shadow:0 1px 3px rgba(94,141,124,.3);letter-spacing:.3px;
+  }
+  .tel:active{background:var(--accent-d)}
+  .caret{flex:0 0 auto;color:var(--mut);font-size:12px;padding:5px;margin-top:2px;transition:transform .18s;opacity:.6}
+  .card.open .caret{transform:rotate(180deg)}
+  /* ——— Część rozwinięta ——— */
+  .body{display:none;padding:2px 15px 16px;border-top:1px solid var(--line)}
+  .card.open .body{display:block}
+  .kv{display:flex;gap:10px;font-size:14.5px;padding:9px 0;border-bottom:1px solid #efe9dc}
+  .kv b{color:var(--mut);font-weight:500;flex:0 0 78px}
+  .kv a{color:var(--accent-d);text-decoration:none;word-break:break-all}
+  .statlabel{color:var(--mut);font-size:11.5px;font-weight:600;margin:14px 0 9px;text-transform:uppercase;letter-spacing:.8px}
+  .stbtns{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+  .stbtn{
+    border:1px solid var(--line);background:var(--card2);color:var(--txt);
+    padding:11px 8px;border-radius:13px;font-size:14px;font-weight:500;
+    cursor:pointer;display:flex;align-items:center;gap:8px;justify-content:center;
+  }
+  .stbtn .sd{width:9px;height:9px;border-radius:50%}
+  .stbtn.sel{background:#fff;border-width:2px;padding:10px 7px;font-weight:600}
+  .when{margin-top:10px;width:100%;background:var(--card2);border:1px solid var(--line);
+    color:var(--txt);border-radius:13px;padding:11px;font-size:14.5px}
+  textarea.note{
+    margin-top:10px;width:100%;min-height:64px;background:#fff;
+    border:1px solid var(--line);color:var(--txt);border-radius:13px;
+    padding:11px;font-size:14.5px;font-family:inherit;resize:vertical;line-height:1.4;
+  }
+  textarea.note::placeholder{color:#c2bdb2}
+  .mic{margin-top:8px;color:var(--mut);font-size:12px;display:flex;align-items:center;gap:6px;opacity:.8}
+  .empty{color:var(--mut);text-align:center;padding:44px 20px}
+  footer{color:#b4ad9f;font-size:11px;text-align:center;padding:20px 20px 6px}
+</style>
+</head>
+<body>
+<header>
+  <div class="hi" id="greet">Cześć! <small>· Kolot Booking</small></div>
+  <div class="sub" id="sub">Ładowanie…</div>
+  <div class="chips" id="chips"></div>
+</header>
+<main id="list"><div class="empty">Ładowanie listy…</div></main>
+<footer id="foot"></footer>
+
+<script>
+/* ============================================================
+   PODPISY — единый словарь (i18n-ready). Перевод = правка этого блока.
+   ============================================================ */
+const L = {
+  greet:        "Cześć, Joasiu 👋",
+  brand:        "Kolot · Booking",
+  sub:          n => `${n} miejsc do obdzwonienia`,
+  status:       "Status rozmowy",
+  sent:         "Oferta wysłana",
+  www:          "Strona",
+  person:       "Osoba",
+  role:         "Rola",
+  notePh:       "Zapisz po rozmowie…",
+  mic:          "🎤 Notatka głosowa — wkrótce (Faza 2)",
+  all:          "Wszystkie",
+  empty:        "Brak miejsc w tym filtrze.",
+  foot:         "Dane lokalne na tym telefonie · synchronizacja z Hermes — Faza 2",
+};
+/* Статусы воронки (6). order = вес внутри категории (выше = выше). */
+const STATUSES = {
+  not_called: {label:"Nie dzwoniono",   color:"var(--s-none)",    order:30},
+  no_answer:  {label:"Nie odebrano",    color:"var(--s-noans)",   order:50},
+  callback:   {label:"Oddzwonić",       color:"var(--s-call)",    order:45},
+  interested: {label:"Zainteresowani",  color:"var(--s-int)",     order:40},
+  refused:    {label:"Odmowa",          color:"var(--s-ref)",     order:-50},
+  concert:    {label:"Koncert ✅",       color:"var(--s-concert)", order:-5},
+};
+const STATUS_ORDER = ["not_called","no_answer","callback","interested","concert","refused"];
+
+/* Базовый приоритет категории + сезонная коррекция (мес. 11,12,1,2). */
+function categoryPriority(key){
+  const m = new Date().getMonth()+1;       // клиентский месяц = сезон
+  const inSeason = (m>=11 || m<=2);
+  switch(key){
+    case "independent": return 100;
+    case "kawiarnia":   return 92;
+    case "nowe":        return 88;
+    case "festiwal":    return inSeason ? 95 : 45;
+    case "domkultury":  return inSeason ? 90 : 40;
+    case "jam":         return 10;
+    default:            return 50;
+  }
+}
+const CAT_LABELS = {
+  independent:"Niezależni organizatorzy", kawiarnia:"Kawiarnie / Restauracje",
+  nowe:"Nowe — do obdzwonienia", festiwal:"Festiwale", domkultury:"Domy Kultury",
+  jam:"Jam Sessions",
+};
+/* Дата письма -> «24 III» (короткий человеческий вид) */
+const PL_M = ["","I","II","III","IV","V","VI","VII","VIII","IX","X","XI","XII"];
+function shortDate(iso){ if(!iso) return ""; const p=iso.split("-"); return p.length===3?`${+p[2]} ${PL_M[+p[1]]}`:iso; }
+
+/* ============================================================
+   СОСТОЯНИЕ — localStorage (не зависим от него: try/catch).
+   ============================================================ */
+const SKEY = "kolot_booking_state_v1";
+function loadState(){ try{return JSON.parse(localStorage.getItem(SKEY))||{}}catch(e){return {}} }
+function saveState(s){ try{localStorage.setItem(SKEY, JSON.stringify(s))}catch(e){} }
+let STATE = loadState();          // { id: {status, note, when} }
+function vstate(id){ return STATE[id] || (STATE[id]={status:"not_called",note:"",when:""}); }
+
+let VENUES = [], FILTER = new Set(), OPEN = new Set();
+
+/* Назначенный на СЕГОДНЯ звонок = глобальный пин наверх (исключение из категорий). */
+function isPinned(v){
+  const st = vstate(v.id);
+  if(st.status!=="callback" || !st.when) return false;
+  const d = new Date(st.when), now = new Date();
+  return d.toDateString() === now.toDateString();
+}
+function sortKey(v){
+  const st = vstate(v.id);
+  const pin = isPinned(v) ? 1 : 0;
+  const cat = categoryPriority(v.category_key);
+  const ord = (STATUSES[st.status]||STATUSES.not_called).order;
+  const sc  = parseFloat(v.score)||0;
+  return [pin, cat, ord, sc];
+}
+function cmp(a,b){
+  const ka=sortKey(a), kb=sortKey(b);
+  for(let i=0;i<ka.length;i++){ if(kb[i]!==ka[i]) return kb[i]-ka[i]; }
+  return a.name.localeCompare(b.name,"pl");
+}
+
+/* ============================================================
+   РЕНДЕР
+   ============================================================ */
+function esc(s){ return (s||"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c])); }
+
+function render(){
+  document.getElementById("greet").innerHTML = `${L.greet} <small>· ${L.brand}</small>`;
+  let vis = VENUES.filter(v => FILTER.size===0 || FILTER.has(v.category_key));
+  document.getElementById("sub").textContent = L.sub(vis.length);
+  document.getElementById("foot").textContent = L.foot;
+  vis.sort(cmp);
+
+  const list = document.getElementById("list");
+  if(!vis.length){ list.innerHTML = `<div class="empty">${L.empty}</div>`; return; }
+
+  let html="", lastCat=null;
+  for(const v of vis){
+    const st = vstate(v.id), S = STATUSES[st.status]||STATUSES.not_called;
+    const pinned = isPinned(v);
+    const catNow = pinned ? "⏰ Pilne — umówione" : CAT_LABELS[v.category_key]||"";
+    if(catNow!==lastCat){ html += `<div class="group">${esc(catNow)}</div>`; lastCat=catNow; }
+    const open = OPEN.has(v.id);
+    html += `
+    <div class="card ${open?'open':''} ${pinned?'pinned':''}" data-id="${v.id}">
+      <div class="head">
+        <div class="toprow">
+          <span class="dot" style="background:${S.color}"></span>
+          <div class="meta">
+            <div class="name">${esc(v.name)}</div>
+            ${pinned
+              ? `<div class="pinrow">⏰ ${esc(new Date(st.when).toLocaleString("pl-PL",{weekday:"short",hour:"2-digit",minute:"2-digit"}))}</div>`
+              : (v.emailed_date?`<div class="sent">✉️ ${L.sent} ${esc(shortDate(v.emailed_date))}</div>`:``)}
+          </div>
+          <span class="caret" data-toggle="${v.id}">▾</span>
+        </div>
+        <a class="tel" href="tel:${esc(v.phone_href)}" onclick="event.stopPropagation()">📞 ${esc(v.phone)}</a>
+      </div>
+      <div class="body">
+        ${v.person?`<div class="kv"><b>${L.person}</b><span>${esc(v.person)}</span></div>`:``}
+        ${v.role?`<div class="kv"><b>${L.role}</b><span>${esc(v.role)}</span></div>`:``}
+        ${v.website?`<div class="kv"><b>${L.www}</b><a href="${esc(v.website)}" target="_blank" rel="noopener" onclick="event.stopPropagation()">${esc(v.website.replace(/^https?:\/\//,''))}</a></div>`:``}
+        <div class="statlabel">${L.status}</div>
+        <div class="stbtns">
+          ${STATUS_ORDER.map(k=>{
+            const st2=STATUSES[k]; const sel=st.status===k;
+            return `<button class="stbtn ${sel?'sel':''}" style="${sel?`border-color:${st2.color}`:''}" data-st="${v.id}|${k}">
+              <span class="sd" style="background:${st2.color}"></span>${esc(st2.label)}</button>`;
+          }).join("")}
+        </div>
+        ${st.status==="callback"?`<input class="when" type="datetime-local" value="${esc(st.when)}" data-when="${v.id}">`:``}
+        <textarea class="note" placeholder="${L.notePh}" data-note="${v.id}">${esc(st.note)}</textarea>
+        <div class="mic">${L.mic}</div>
+      </div>
+    </div>`;
+  }
+  list.innerHTML = html;
+}
+
+function renderChips(){
+  const counts={};
+  for(const v of VENUES) counts[v.category_key]=(counts[v.category_key]||0)+1;
+  const order=["independent","kawiarnia","nowe","festiwal","domkultury","jam"];
+  let html=`<div class="chip ${FILTER.size===0?'on':''}" data-cat="*">${L.all}<span class="n">${VENUES.length}</span></div>`;
+  for(const k of order){ if(!counts[k])continue;
+    html+=`<div class="chip ${FILTER.has(k)?'on':''}" data-cat="${k}">${esc(CAT_LABELS[k])}<span class="n">${counts[k]}</span></div>`;
+  }
+  document.getElementById("chips").innerHTML=html;
+}
+
+/* ============================================================
+   СОБЫТИЯ (делегирование)
+   ============================================================ */
+document.addEventListener("click", e=>{
+  const chip=e.target.closest(".chip");
+  if(chip){ const c=chip.dataset.cat;
+    if(c==="*") FILTER.clear(); else { FILTER.has(c)?FILTER.delete(c):FILTER.add(c); }
+    renderChips(); render(); return; }
+  const stb=e.target.closest("[data-st]");
+  if(stb){ const [id,k]=stb.dataset.st.split("|"); vstate(id).status=k; saveState(STATE); render(); return; }
+  const tog=e.target.closest(".head, [data-toggle]");
+  if(tog){ const card=e.target.closest(".card"); if(!card)return; const id=card.dataset.id;
+    OPEN.has(id)?OPEN.delete(id):OPEN.add(id); render(); return; }
+});
+document.addEventListener("input", e=>{
+  if(e.target.matches("[data-note]")){ vstate(e.target.dataset.note).note=e.target.value; saveState(STATE); }
+  if(e.target.matches("[data-when]")){ vstate(e.target.dataset.when).when=e.target.value; saveState(STATE); }
+});
+
+/* ============================================================
+   ЗАГРУЗКА ДАННЫХ
+   ============================================================ */
+fetch("venues.json?_="+Date.now())
+  .then(r=>r.json())
+  .then(d=>{ VENUES=d.venues||[]; renderChips(); render(); })
+  .catch(err=>{
+    document.getElementById("list").innerHTML=
+      `<div class="empty">Nie udało się wczytać danych.<br><small>Uruchom przez serwer/GitHub Pages (nie file://).</small></div>`;
+  });
+</script>
+</body>
+</html>
