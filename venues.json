@@ -817,6 +817,22 @@
    "source": "archive"
   },
   {
+   "id": "504d64324a",
+   "name": "Piano Congress",
+   "category_key": "independent",
+   "category_label": "Niezależni organizatorzy",
+   "city": "",
+   "phone": "696 115 661",
+   "phone_href": "+48696115661",
+   "emailed_date": "2026-03-24",
+   "reply_note": "",
+   "person": "",
+   "role": "ata Patora, koordynator Piano Congress 2025 contact@pianocongress.org +48 736 63",
+   "website": "https://pianocongress.org/kontakt/",
+   "score": "78",
+   "source": "archive"
+  },
+  {
    "id": "44f4b8cd97",
    "name": "Biblioteka im. Witalisa Szlachcikowskiego w Wąbrzeźnie",
    "category_key": "independent",
@@ -1153,6 +1169,22 @@
    "source": "archive"
   },
   {
+   "id": "149b6562e3",
+   "name": "Przystanek Kulturalny Koniec Świata",
+   "category_key": "independent",
+   "category_label": "Niezależni organizatorzy",
+   "city": "Katowice",
+   "phone": "32 419 04 24",
+   "phone_href": "+48324190424",
+   "emailed_date": "2026-03-24",
+   "reply_note": "",
+   "person": "",
+   "role": "y i Zwiększenia Odporności sfinansowanego przez Unię Europejską NextGenerationEU",
+   "website": "https://www.koniecswiata.net.pl/",
+   "score": "70",
+   "source": "archive"
+  },
+  {
    "id": "7db95793d2",
    "name": "Centrum Kultury Wilanów",
    "category_key": "domkultury",
@@ -1409,6 +1441,22 @@
    "source": "archive"
   },
   {
+   "id": "60d788611d",
+   "name": "Strefa Kultury Wrocław",
+   "category_key": "independent",
+   "category_label": "Niezależni organizatorzy",
+   "city": "Wrocław",
+   "phone": "71 712 75 60",
+   "phone_href": "+48717127560",
+   "emailed_date": "2026-03-24",
+   "reply_note": "",
+   "person": "",
+   "role": "lontariat PTW Kontakt Strona główna / Kontakt Kontakt Strefa Kultury Wrocław ul.",
+   "website": "https://strefakultury.pl/kontakt/",
+   "score": "65",
+   "source": "archive"
+  },
+  {
    "id": "291436b78d",
    "name": "Wieluński Dom Kultury",
    "category_key": "domkultury",
@@ -1505,6 +1553,22 @@
    "source": "archive"
   },
   {
+   "id": "65dfffb178",
+   "name": "Akademia Muzyczna w Bydgoszczy",
+   "category_key": "independent",
+   "category_label": "Niezależni organizatorzy",
+   "city": "Bydgoszcz",
+   "phone": "52 311 78 07",
+   "phone_href": "+48523117807",
+   "emailed_date": "2026-03-24",
+   "reply_note": "",
+   "person": "",
+   "role": "iejskiego w Bydgoszczy ul. prof. Jerzego Godziszewskiego 1, 85-075 Bydgoszcz Adr",
+   "website": "https://www.amuz.bydgoszcz.pl/kontakt/",
+   "score": "63",
+   "source": "archive"
+  },
+  {
    "id": "3fb3fa0119",
    "name": "SCKiB Radomyśl Wielki",
    "category_key": "independent",
@@ -1565,6 +1629,22 @@
    "person": "",
    "role": "Kontakt | Narodowe Centrum Polskiej Piosenki Przejdź do menu głównego Przejdź do",
    "website": "https://ncpp.opole.pl/menu/kontakt.html",
+   "score": "60",
+   "source": "archive"
+  },
+  {
+   "id": "8a613c7663",
+   "name": "Osiedlowy Dom Kultury Zasole",
+   "category_key": "domkultury",
+   "category_label": "Domy Kultury",
+   "city": "Bielsko-Biała",
+   "phone": "33 842 25 75",
+   "phone_href": "+48338422575",
+   "emailed_date": "2026-03-24",
+   "reply_note": "",
+   "person": "Monika Świętek-Smrek",
+   "role": "nach 9.00-19.30. W okresie wakacyjnym lipiec-sierpień  w godzinach 9.00-19.00 Oś",
+   "website": "https://odkzasole.pl/kontakt/",
    "score": "60",
    "source": "archive"
   },
@@ -1709,6 +1789,22 @@
    "person": "",
    "role": "OTUR ZPAP Tarnów ZPAP Łódź Katalog YOUTUBE Róże Jazz Festiwal 4 Róże ZONARTE Roc",
    "website": "https://www.kombinat-kultury.pl/kontakt/",
+   "score": "55",
+   "source": "archive"
+  },
+  {
+   "id": "b03b611174",
+   "name": "Miejskie Centrum Kultury w Ostrowcu Świętokrzyskim",
+   "category_key": "domkultury",
+   "category_label": "Domy Kultury",
+   "city": "Kielce",
+   "phone": "41 247 65 80",
+   "phone_href": "+48412476580",
+   "emailed_date": "2026-03-24",
+   "reply_note": "",
+   "person": "",
+   "role": "rzyski Czynne od poniedziałku do piątku w godz. 7.30 – 15.30 Sekretariat tel. 41",
+   "website": "https://mck.ostrowiec.pl/kontakt/",
    "score": "55",
    "source": "archive"
   },
@@ -2033,6 +2129,22 @@
    "source": "archive"
   },
   {
+   "id": "f0426e48fc",
+   "name": "Przystanek Rozmarino",
+   "category_key": "independent",
+   "category_label": "Niezależni organizatorzy",
+   "city": "Suwałki",
+   "phone": "87 563 24 00",
+   "phone_href": "+48875632400",
+   "emailed_date": "2026-03-24",
+   "reply_note": "",
+   "person": "",
+   "role": "0:00 - 22:00 niedziela 10:00 - 22:00 × Dane adresowe Przystanek Rozmarino Tadeus",
+   "website": "https://www.rozmarino.pl/kontakt/",
+   "score": "55",
+   "source": "archive"
+  },
+  {
    "id": "5a93a1469a",
    "name": "Puławski Ośrodek Kultury \"Dom Chemika\"",
    "category_key": "domkultury",
@@ -2193,6 +2305,22 @@
    "source": "archive"
   },
   {
+   "id": "91cb0da130",
+   "name": "Fundacja Art of Freedom",
+   "category_key": "festiwal",
+   "category_label": "Festiwale",
+   "city": "",
+   "phone": "607 139 310",
+   "phone_href": "+48607139310",
+   "emailed_date": "2026-03-24",
+   "reply_note": "",
+   "person": "Maria Reif",
+   "role": "Środowisko- wych, szpitali, szkól specjalnych. Jesteśmy po to, aby przetrwała Pa",
+   "website": "https://fundacjaartfreeart.pl/?p=p_66&sName=kontakt",
+   "score": "53",
+   "source": "archive"
+  },
+  {
    "id": "229bfdb54c",
    "name": "Łódzkie Stowarzyszenie Muzyczne Ocalić od Zapomnienia",
    "category_key": "kawiarnia",
@@ -2286,6 +2414,22 @@
    "role": "rnetowa sprzedaż biletów Przejdź do treści Regionalne Centrum Kultury – internet",
    "website": "https://bilet.rck.pila.pl/glupi-komputer/",
    "score": "48",
+   "source": "archive"
+  },
+  {
+   "id": "dee588c1a1",
+   "name": "Centrum Kultury i Sztuki w Kaliszu",
+   "category_key": "domkultury",
+   "category_label": "Domy Kultury",
+   "city": "Kalisz",
+   "phone": "62 765 25 45",
+   "phone_href": "+48627652545",
+   "emailed_date": "2026-03-24",
+   "reply_note": "",
+   "person": "",
+   "role": "ontakt Kasa CKiS - 62. 765 25 52 Kasa czynna od 15:00 do 21:00 ul. Łazienna 6, 6",
+   "website": "https://ckis.kalisz.pl/",
+   "score": "40",
    "source": "archive"
   },
   {
